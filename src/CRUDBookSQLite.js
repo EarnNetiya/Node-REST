@@ -1,9 +1,8 @@
-const e = require('express');
 const express = require('express');
 const sqlite3 = require('sqlite3');
 const app = express();
 
-const db = new sqlite3.Database('./Database/Book.sqlite');
+const db = new sqlite3.Database('./Database/Books.sqlite');
 app.use(express.json());
 
 db.run('CREATE TABLE IF NOT EXISTS Book (id INTEGER PRIMARY KEY , title TEXT, author TEXT)');
@@ -20,7 +19,7 @@ app.get('/books', (req, res) => {
 });
 
 app.get('/books/:id', (req, res) => {
-    db.get('SELECT * FROM Book WHERE id = ?', [req.params.id], (err, row) => {
+    db.get('SELECT * FROM Book WHERE id = ?', req.params.id, (err, row) => {
         if (err) {
             res.status(500).send(err);
             
@@ -53,8 +52,8 @@ app.put('/books/:id', (req, res) => {
         if (err) {
             res.status(500).send(err);
             
-        }else{
-        res.send(book);
+        } else{
+            res.send(book);
         }
     });
 });
