@@ -52,19 +52,4 @@
 //     });
 // });
 
-// app.put('/books/:id', (req, res) => {
-//     Book.findByPk(req.params.id).then(book => {
-//         if (!book) {
-//             res.status(404).send('Book not found');
-//         } else {
-//             book.update(req.body).then(book => {
-//                 res.send(book);
-//             }).catch(err => {
-//                 res.status(500).send(err);
-//             });
-//         }
-//     }
-//     }).catch(err => {
-//         res.status(500).send(err);
-//     });
-// })
+
